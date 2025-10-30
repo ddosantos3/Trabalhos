@@ -1,0 +1,36 @@
+# Arquivo de dependências para o projeto Agente Trader Binance
+
+# Use pip install -r requirements.txt para instalar.
+
+# --- Core da API ---
+fastapi               # Framework para a criação da API web
+uvicorn[standard]     # Servidor ASGI para rodar o FastAPI
+pydantic              # Validação de dados (usado pelo FastAPI)
+python-dotenv         # Para carregar variáveis de ambiente de arquivos .env
+
+# --- Conexão com a Binance ---
+python-binance        # Cliente oficial para a API da Binance
+
+# --- Análise de Dados e Indicadores ---
+pandas                # Manipulação e análise de dados (ex: klines)
+numpy                 # Suporte para arrays e operações numéricas (usado pelo Pandas e no ChatAgent)
+
+# --- Coleta de Notícias ---
+requests              # Para fazer requisições HTTP (coleta de notícias)
+beautifulsoup4        # Para fazer parsing de HTML (coleta de notícias)
+lxml                  # Parser HTML eficiente (usado com BeautifulSoup)
+
+# --- Inteligência Artificial (OpenAI) ---
+openai>=1.0.0         # Biblioteca oficial do cliente OpenAI
+tiktoken             # Tokenizador para modelos OpenAI  
+tenacity             # Biblioteca de retry para chamadas de API robustas
+
+# --- Outras Dependências ---
+loguru               # Logging avançado para depuração e monitoramento
+schedule             # Agendamento de tarefas periódicas
+httpx                 # Cliente HTTP assíncrono para chamadas API
+aiohttp               # Cliente HTTP assíncrono (alternativa ao httpx)
+websockets            # Suporte a WebSockets para comunicação em tempo real
+pytest                # Framework de testes
+pytest-asyncio      # Suporte para testes assíncronos com pytest
+# Filtros de versão podem ser ajustados conforme necessário

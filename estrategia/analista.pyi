@@ -1,0 +1,16 @@
+# backend/estrategia/analista.pyi
+from typing import Any, Dict, Optional, overload
+
+class AnalistaFinanceiro:
+    def __init__(self, *args: Any, **kwargs: Any) -> None: ...
+    
+    @overload
+    def obter_analise(self, dados_tecnicos: Dict[str, Any], info_ativo: Dict[str, Any]) -> Dict[str, Any]: ...
+    
+    @overload
+    def obter_analise(self, info_ativo: Dict[str, Any]) -> Dict[str, Any]: ...
+    
+    # assinatura "real" que funciona como fallback para o stub
+    def obter_analise(self, *args: Any, **kwargs: Any) -> Dict[str, Any]: ...
+    
+    def resumo_operacional(self, dados_tecnicos: Dict[str, Any]) -> Dict[str, Any]: ...
