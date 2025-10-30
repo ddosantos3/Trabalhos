@@ -1,60 +1,60 @@
 # Agente Trader Preditivo com IA (Binance)
 
-Este projeto implementa um backend em Python (FastAPI) para an·lise de mercado cripto (Binance), integrando indicadores tÈcnicos, coleta de notÌcias econÙmicas e um agente de IA para gerar recomendaÁıes de trading apresentadas em um dashboard.
+Este projeto implementa um backend em Python (FastAPI) para an√°lise de mercado cripto (Binance), integrando indicadores t√©cnicos, coleta de not√≠cias econ√¥micas e um agente de IA para gerar recomenda√ß√µes de trading apresentadas em um dashboard.
 
-## Vis„o Geral
+## Vis√£o Geral
 - Backend em Python com FastAPI.
-- IntegraÁ„o com Binance para klines e preÁos em tempo real.
-- C·lculo de indicadores tÈcnicos (EMA, RSI, VWAP e Bandas de VWAP).
-- Coleta de notÌcias econÙmicas (web scraping do calend·rio do MyFxBook).
-- Agente de IA (RAG + LLM) que produz recomendaÁıes estruturadas ("COMPRAR", "VENDER", "MANTER").
+- Integra√ß√£o com Binance para klines e pre√ßos em tempo real.
+- C√°lculo de indicadores t√©cnicos (EMA, RSI, VWAP e Bandas de VWAP).
+- Coleta de not√≠cias econ√¥micas (web scraping do calend√°rio do MyFxBook).
+- Agente de IA (RAG + LLM) que produz recomenda√ß√µes estruturadas ("COMPRAR", "VENDER", "MANTER").
 - Estrutura pronta para um frontend web simples (HTML/CSS/JS).
 
-## Principais MÛdulos
-- `api/`: rotas FastAPI (ativos, an·lise, notÌcias, sa˙de do serviÁo).
-- `estrategia/`: c·lculo de indicadores e lÛgica de decis„o.
+## Principais M√≥dulos
+- `api/`: rotas FastAPI (ativos, an√°lise, not√≠cias, sa√∫de do servi√ßo).
+- `estrategia/`: c√°lculo de indicadores e l√≥gica de decis√£o.
 - `agent/`: agente de IA, contexto, RAG (arquivos em `data/`).
-- `utils/`: helpers (datas, normalizaÁ„o, tradingview widgets, etc.).
-- `config/`: configs, vari·veis de ambiente e credenciais (usar `.env`).
-- `data/`: bases locais para RAG e artefatos (evitar versionar dados sensÌveis).
+- `utils/`: helpers (datas, normaliza√ß√£o, tradingview widgets, etc.).
+- `config/`: configs, vari√°veis de ambiente e credenciais (usar `.env`).
+- `data/`: bases locais para RAG e artefatos (evitar versionar dados sens√≠veis).
 
 ## Requisitos
 - Python 3.10+
 - `pip install -r requirements.txt`
-- Vari·veis `.env` (exemplos):
+- Vari√°veis `.env` (exemplos):
   - `BINANCE_API_KEY` e `BINANCE_SECRET_KEY`
-  - `OPENAI_API_KEY` (ou provedor compatÌvel)
+  - `OPENAI_API_KEY` (ou provedor compat√≠vel)
   - `NEWS_REGION` (ex.: BR, US)
 
 ## Como Executar
 1. Crie e ative seu ambiente virtual (`python -m venv .venv` e ative).
-2. Instale dependÍncias: `pip install -r requirements.txt`.
+2. Instale depend√™ncias: `pip install -r requirements.txt`.
 3. Configure `.env` em `backend/` com suas chaves.
 4. Rode a API: `uvicorn api.main:app --reload`.
 5. Acesse o Swagger: `http://localhost:8000/docs`.
 
-## Fluxo de An·lise (Resumo)
-1. O usu·rio seleciona ativo/timeframe e solicita an·lise.
+## Fluxo de An√°lise (Resumo)
+1. O usu√°rio seleciona ativo/timeframe e solicita an√°lise.
 2. A API busca klines recentes na Binance.
-3. Os indicadores s„o calculados em `estrategia/`.
+3. Os indicadores s√£o calculados em `estrategia/`.
 4. O agente de IA recebe o contexto (indicadores + sentimento + conhecimento em `data/`).
-5. A IA retorna JSON com aÁ„o, confianÁa e justificativa.
+5. A IA retorna JSON com a√ß√£o, confian√ßa e justificativa.
 6. A API consolida e retorna para o frontend renderizar no dashboard.
 
 ## Roadmap
-- ExecuÁ„o de ordens reais/tempo simulado via Binance (trade engine seguro).
-- Backtesting com mÈtricas (CAGR, MDD, Sharpe) e otimizaÁ„o de par‚metros.
-- EstratÈgias adicionais (Breakout, Mean Reversion, Momentum multi-timeframe).
-- Melhoria do RAG com embeddings e indexaÁ„o vetorial (FAISS/Chroma).
-- Alertas por e-mail/Telegram e webhooks personaliz·veis.
-- Cache de dados e filas para scraping/integraÁıes mais robustas.
-- Dockerfile e Compose para desenvolvimento e produÁ„o.
+- Execu√ß√£o de ordens reais/tempo simulado via Binance (trade engine seguro).
+- Backtesting com m√©tricas (CAGR, MDD, Sharpe) e otimiza√ß√£o de par√¢metros.
+- Estrat√©gias adicionais (Breakout, Mean Reversion, Momentum multi-timeframe).
+- Melhoria do RAG com embeddings e indexa√ß√£o vetorial (FAISS/Chroma).
+- Alertas por e-mail/Telegram e webhooks personaliz√°veis.
+- Cache de dados e filas para scraping/integra√ß√µes mais robustas.
+- Dockerfile e Compose para desenvolvimento e produ√ß√£o.
 
-## Boas Pr·ticas e SeguranÁa
-- Nunca exponha chaves de API no repositÛrio; use `.env`.
-- Evite operar em contas reais sem limites e proteÁıes.
-- Valide inputs e trate exceÁıes nas rotas.
-- FaÁa logs estruturados e centralize erros.
+## Boas Pr√°ticas e Seguran√ßa
+- Nunca exponha chaves de API no reposit√≥rio; use `.env`.
+- Evite operar em contas reais sem limites e prote√ß√µes.
+- Valide inputs e trate exce√ß√µes nas rotas.
+- Fa√ßa logs estruturados e centralize erros.
 
 ## Estrutura (exemplo)
 ```
@@ -70,8 +70,8 @@ backend/
 +- requirements.txt
 ```
 
-## LicenÁa
-Defina a licenÁa conforme sua preferÍncia (ex.: MIT). Caso deseje, adiciono um arquivo `LICENSE`.
+## Licen√ßa
+FREEEE!
 
 ---
-Criado com foco em clareza, extensibilidade e seguranÁa para operaÁıes de trading algorÌtmico.
+Criado com foco em clareza, extensibilidade e seguran√ßa para opera√ß√µes de trading algor√≠tmico.
